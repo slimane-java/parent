@@ -1,0 +1,50 @@
+type Query {
+customers : [Customer]
+customersById(id:ID):Customer
+}
+
+type Mutation {
+    createCustomer(input : CustomerInput):Customer,
+    updateCustomer(id:ID, input:CustomerEdit): Customer
+}
+type Customer {
+    name: String,
+    gender: String,
+    mail: String,
+    tel: String,
+    accounts: [Account]
+}
+
+type Account{
+    id: Int,
+    number: Int,
+    balance: Float,
+    accountStatus: AccountStatus
+}
+
+input CustomerEdit{
+    name: String,
+    gender: String
+}
+input CustomerInput{
+    name: String,
+    gender: String,
+    mail: String,
+    tel: String,
+    accounts: [AccountInput]
+}
+
+input AccountInput{
+    number: Int,
+    balance: Float,
+    accountStatus: AccountStatus
+}
+
+enum AccountStatus{
+    ACTIVE, INACTIVE, CLOSED
+}
+
+schema {
+    mutation: Mutation,
+    query: Query
+}
