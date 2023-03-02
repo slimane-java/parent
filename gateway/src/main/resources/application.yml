@@ -1,0 +1,40 @@
+server:
+  port: 8060
+spring:
+  application:
+    name: gateway-server
+  cloud:
+    gateway:
+      loadbalancer:
+        use404: true
+      discovery:
+        locator:
+          enabled: true
+
+      routes:
+        - id: invoice-server
+          uri: lb://invoice-server/
+          predicates:
+            - Path=/api-invoice/**
+        - id: project-test
+          uri: http://project-test
+          predicates:
+            - Path=/api-projectTest/**
+        - id: material-server
+          uri: lb://material-server/
+          predicates:
+            - Path=/api-demo-service-support/**
+        - id: graphql-server
+          uri: lb://graphql-server/
+          predicates:
+            - Path=/api-graphql-server/**
+
+eureka:
+  client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+
+
