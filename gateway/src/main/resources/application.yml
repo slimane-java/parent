@@ -17,7 +17,7 @@ spring:
           predicates:
             - Path=/api-invoice/**
         - id: project-test
-          uri: http://project-test
+          uri: lb://project-test
           predicates:
             - Path=/api-projectTest/**
         - id: material-server

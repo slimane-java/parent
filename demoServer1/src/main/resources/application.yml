@@ -1,4 +1,9 @@
 spring:
+  kafka:
+    consumer:
+      bootstrap-servers: 192.168.99.100:9092
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
   main:
     allow-circular-references: true
 #  security:
@@ -47,5 +52,8 @@ resilience4j:
         limit-refresh-period: 5s
         timeout-duration: 0
 
-
+demo:
+  kafka:
+    topic:
+      myKafkaTest
 

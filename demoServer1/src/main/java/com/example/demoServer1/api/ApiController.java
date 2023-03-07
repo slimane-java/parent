@@ -6,6 +6,7 @@ import com.example.demoServer1.entityTarget.ClientGetDto;
 import com.example.demoServer1.enums.ExceptionMessage;
 import com.example.demoServer1.exception.InvoiceAlreadyExists;
 import com.example.demoServer1.exception.InvoiceNotFound;
+import com.example.demoServer1.kafka.MessageRepository;
 import com.example.demoServer1.mapper.InvoiceMapper;
 import com.example.demoServer1.service.GraphqlService;
 import com.example.demoServer1.service.InvoiceService;
@@ -43,8 +44,14 @@ public class ApiController {
 
     private final GraphqlService graphqlService;
 
+    private final MessageRepository messageRepository;
+
     private  Gson gson = new Gson();
 
+    @GetMapping("/getAll")
+    public List<String> getAllMessages() {
+        return messageRepository.getAllMessages() ;
+    }
     @PostMapping("/getAllGraphql")
     public ResponseEntity<String> getAllGraphql(@RequestBody Query query){
         System.out.println("Query Query " + query.getQuery());

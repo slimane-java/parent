@@ -8,6 +8,7 @@ import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.kafka.annotation.EnableKafka;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.client.RestTemplate;
@@ -17,7 +18,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 @EnableDiscoveryClient
 @EnableFeignClients
 @ComponentScan(basePackages = {"com"})
-
+@EnableKafka
 public class DemoServer1Application {
 
 	public static void main(String[] args) {
